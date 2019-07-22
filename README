@@ -1,0 +1,3 @@
+# Dockerized Atlassian SDK
+
+This image provides AdoptOpenJDK 8 with Atlassian SDK tools, in hope that it will be useful to other Atlassian ecosystem developers.
