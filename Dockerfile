@@ -5,7 +5,7 @@ LABEL description="Dockerized Atlassian SDK on AdoptOpenJDK 8"
 ENV ATLASSIAN_SDK_VERSION="8.0.16"
 
 RUN apt-get update &&\
-    apt-get install -y --no-install-recommends curl gnupg &&\
+    apt-get install -y --no-install-recommends curl gnupg git &&\
     sh -c 'echo "deb https://packages.atlassian.com/debian/atlassian-sdk-deb/ stable contrib" >>/etc/apt/sources.list' &&\
     curl -LO https://packages.atlassian.com/api/gpg/key/public &&\
     apt-key add public &&\
