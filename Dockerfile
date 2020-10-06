@@ -5,7 +5,7 @@ LABEL description="Dockerized Atlassian SDK on AdoptOpenJDK 8"
 ENV ATLASSIAN_SDK_VERSION="8.0.16"
 
 RUN apt-get update &&\
-    apt-get install -y --no-install-recommends curl gnupg git &&\
+    apt-get install -y --no-install-recommends curl gnupg git ssh-client &&\
     sh -c 'echo "deb https://packages.atlassian.com/debian/atlassian-sdk-deb/ stable contrib" >>/etc/apt/sources.list' &&\
     curl -LO https://packages.atlassian.com/api/gpg/key/public &&\
     apt-key add public &&\
@@ -13,7 +13,8 @@ RUN apt-get update &&\
     apt-get install -y --no-install-recommends atlassian-plugin-sdk=${ATLASSIAN_SDK_VERSION} &&\
     apt-get remove -y curl gnupg &&\
     apt-get autoremove -y &&\
-    apt-get clean all
+    apt-get clean all &&\
+    ln -s /usr/bin/atlas-mvn /usr/bin/mvn
 
 WORKDIR /opt
 RUN atlas-version
